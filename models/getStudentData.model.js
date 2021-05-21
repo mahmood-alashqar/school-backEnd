@@ -1,19 +1,20 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/student', { useNewUrlParser: true, useUnifiedTopology: true });
-
+mongoose.connect('mongodb://localhost:27017/studentsDB',
+  {
+    useNewUrlParser: true, useUnifiedTopology: true
+  });
 const studentSchema = {
   name: String,
   grade: Number,
   id: Number,
-  loc: String,
+  location: String,
 }
-const studentModel = mongoose.model('studentCollection', studentSchema);
-
-const studentData = new studentModel({
-  name: 'mahmood',
+const studentModel = mongoose.model('studentsC', studentSchema);
+const studentTest = new studentModel({
+  name: "mahmoud",
   grade: 95,
-  id: 12345,
-  loc: 'Irbid'
+  id: 999999,
+  location: 'irbid',
 });
-// studentData.save();
+studentTest.save();
 module.exports = studentModel;

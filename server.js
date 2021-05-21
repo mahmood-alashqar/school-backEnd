@@ -1,42 +1,12 @@
-const express = require('express');
-const app = express();
-const Port = 3030;
+const server = require('express');
+const getStudent = require('./models/getStudentData');
+const addStudent = require('./models/addStudent');
 const cors = require('cors');
-const getStudentData = require('./models/getStudentData');
+const app = server();
 app.use(cors());
-
-
-
-
-
-
-
-
-
-
-
-app.get('/', function (req, res) {
-  res.send('Hello World')
-});
-
-app.get('/student', getStudentData);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-app.listen(Port, () => {
-  console.log(`server is ${Port}`);
-})
+app.use(server.json());
+const port = 3003;
+// studentTest.save();
+app.get('/student', getStudent);
+app.post('/student', addStudent);
+app.listen(port, () => { console.log(`we are on port ${port}`) });
